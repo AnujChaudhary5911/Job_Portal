@@ -2,6 +2,8 @@ import express from 'express'
 const app=express();
 import dotenv from 'dotenv';
 dotenv.config();
+import cors from'cors';
+app.use(cors()); // Ye line backend mein sabse upar honi chahiye
 import helmet from "helmet";
 import mongoose from "mongoose";
 import session from "express-session";
