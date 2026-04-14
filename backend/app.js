@@ -21,7 +21,6 @@ app.use(helmet());
 import path from 'path'
 import { getJobs, postJob ,cDashboard,Rdashboard,view,apply,saveJob,aplyed,savedJobs,updateJob,profile,CandidateUpdate,filter,viewPosted,Applicants,deleteApply,deleteSaved,deletePostedJob,EditPostedJob,Accept,Reject,viewCandidate} from './controllers/jobController.js';
 import {candidateLogin,c_register,recruiterRegister,recruiterLogin} from './src/auth.js';
-const dbName="demo"
 const ab=path.resolve('../frontend/public')
 app.use(express.static(ab))
 app.set('views', path.resolve('../frontend/views'))
