@@ -3,7 +3,7 @@ const app=express();
 import dotenv from 'dotenv';
 dotenv.config();
 import cors from'cors';
-app.use(cors()); // Ye line backend mein sabse upar honi chahiye
+app.use(cors()); 
 import helmet from "helmet";
 import mongoose from "mongoose";
 import session from "express-session";
@@ -13,7 +13,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
    cookie: {
-    maxAge: 30 * 60 * 1000  // 30 minutes in milliseconds
+    maxAge: 30 * 60 * 1000
   }
 }));
 //helmet security lagane ke liye middleware
@@ -80,14 +80,14 @@ app.post("/recruiter/login1",recruiterLogin)//isper
 app.get("/Rdashboard",Rdashboard);
 app.post("/12",candidateLogin)
 app.post("/filter",filter)//filter karne ke liye jobs ko
-app.get("/dashboard",cDashboard)
-app.post("/recruiter/register1",recruiterRegister)
-app.post("/candidate/register",c_register)
-app.get("/viewpostedJob/:id",view)
+app.get("/dashboard",cDashboard)//candidate dashboard ke liye
+app.post("/recruiter/register1",recruiterRegister)//recruiter ke register ke liye
+app.post("/candidate/register",c_register)//candidate register ke liye
+app.get("/viewpostedJob/:id",view)//perticular job ko check karne ke liye
 //job apply karne ke liye route
 app.get("/applyforjob/:id",apply)
-app.get("/saveJob/:id",saveJob)
-app.get("/recruiter/view-posted-jobs",viewPosted)
+app.get("/saveJob/:id",saveJob)//job ko save karne ke liye
+app.get("/recruiter/view-posted-jobs",viewPosted)//posted job ko view krne ke liye
 app.get("/recruiter/register",(req,resp)=>{
     resp.render('recuiter_register')
 })
