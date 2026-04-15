@@ -63,9 +63,9 @@ app.get("/Accept/:id",Accept)
 app.get("/Reject/:id",Reject)
 //candidate ki profile view karne ke liye
 app.post("/viewCandidate",viewCandidate)
-app.get("/candidate/applied-jobs",(req,resp)=>{
-    resp.render('cnadidate_applied')
-})
+// app.get("/candidate/applied-jobs",(req,resp)=>{
+//     resp.render('cnadidate_applied')
+// })
 app.get("/recruiter/login",(req,resp)=>{
     resp.render('recuiter_login')
 })
