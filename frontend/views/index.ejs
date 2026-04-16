@@ -1,444 +1,907 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Job Portal System - Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal System - Find Your Dream Job</title>
     <link rel="stylesheet" href="/css/style.css">
     <style>
-        /* Home Page Specific Styles */
-        .home-navbar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        /* ================================================
+           JOB PORTAL - PREMIUM HOME PAGE v2.0
+           ✨ Modern | Animated | Mobile First
+           ================================================ */
+
+        /* CSS Custom Properties - Same Theme as Dashboard */
+        :root {
+            /* Colors */
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --primary-light: #5dade2;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --accent-dark: #c0392b;
+            --accent-light: #ec7063;
+            --success: #27ae60;
+            --success-dark: #229954;
+            --success-light: #52be80;
+            --warning: #f39c12;
+            
+            /* Neutrals */
+            --bg-primary: #f5f6fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-hover: #f8f9fa;
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --text-muted: #95a5a6;
+            --border: #ecf0f1;
+            
+            /* Shadows */
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 5px 20px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 10px 40px rgba(0, 0, 0, 0.15);
+            --shadow-2xl: 0 20px 60px rgba(52, 152, 219, 0.2);
+            
+            /* Spacing */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 15px;
+            --radius-2xl: 20px;
+            --radius-full: 9999px;
+            
+            /* Typography */
+            --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            --font-mono: 'JetBrains Mono', 'Monaco', monospace;
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.25s ease;
+            --transition-slow: 0.35s ease;
+            
+            /* Z-Index */
+            --z-dropdown: 1000;
+            --z-sticky: 1020;
+            --z-modal: 1050;
         }
 
-        .home-navbar .navbar-container {
-            max-width: 1200px;
+        /* Dark Mode */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: #0f1419;
+                --bg-secondary: #1e293b;
+                --bg-card: #1e293b;
+                --bg-hover: #334155;
+                --text-primary: #f1f5f9;
+                --text-secondary: #cbd5e1;
+                --text-muted: #94a3b8;
+                --border: #334155;
+            }
+        }
+
+        /* ========== RESET & BASE STYLES ==========*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color var(--transition-normal);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* ========== NAVBAR ==========*/
+        .home-navbar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: var(--z-sticky);
+            transition: all var(--transition-normal);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: var(--space-lg) var(--space-xl);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: var(--space-xl);
         }
 
-        .home-navbar .navbar-brand {
+        .navbar-brand {
             color: white;
-            font-size: 28px;
-            font-weight: bold;
+            font-size: clamp(18px, 4vw, 28px);
+            font-weight: 800;
             text-decoration: none;
-        }
-
-        .home-navbar .nav-links {
             display: flex;
-            gap: 20px;
+            align-items: center;
+            gap: var(--space-md);
+            letter-spacing: -1px;
+            transition: transform var(--transition-normal);
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
             list-style: none;
+            gap: var(--space-lg);
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .home-navbar .nav-links a {
-            color: white;
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-normal);
+            font-weight: 500;
+            white-space: nowrap;
         }
 
-        .home-navbar .nav-links a:hover {
+        .nav-links a:hover {
             background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            transform: translateY(-2px);
         }
 
-        /* Hero Section */
+        .nav-links a:nth-child(n+4) {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-links a:nth-child(4):hover {
+            background-color: var(--success);
+            border-color: var(--success);
+        }
+
+        .nav-links a:nth-child(5):hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* ========== HERO SECTION ==========*/
         .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            padding: 120px 20px;
+            padding: clamp(3rem, 10vw, 6rem) var(--space-xl);
             text-align: center;
-            min-height: 500px;
+            min-height: 600px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: float 8s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            animation: float 10s ease-in-out infinite 2s;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .hero-section > * {
+            position: relative;
+            z-index: 2;
         }
 
         .hero-section h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            font-weight: bold;
+            font-size: clamp(32px, 6vw, 56px);
+            margin-bottom: var(--space-lg);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            animation: slideInDown 0.8s ease-out;
         }
 
         .hero-section p {
-            font-size: 20px;
-            margin-bottom: 40px;
+            font-size: clamp(16px, 3vw, 20px);
             opacity: 0.95;
-            max-width: 600px;
+            max-width: 650px;
+            line-height: 1.8;
+            margin-bottom: var(--space-2xl);
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-buttons {
             display: flex;
-            gap: 30px;
+            gap: var(--space-xl);
             justify-content: center;
             flex-wrap: wrap;
+            animation: slideInUp 0.8s ease-out 0.4s both;
         }
 
         .hero-btn {
-            padding: 15px 40px;
-            font-size: 18px;
+            padding: clamp(12px, 2vw, 16px) clamp(24px, 4vw, 40px);
+            font-size: clamp(14px, 2vw, 18px);
             font-weight: 600;
-            border-radius: 8px;
+            border-radius: var(--radius-lg);
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--transition-normal);
             border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            box-shadow: var(--shadow-lg);
         }
 
         .hero-btn-candidate {
-            background-color: #27ae60;
+            background-color: var(--success);
             color: white;
         }
 
         .hero-btn-candidate:hover {
-            background-color: #229954;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3);
+            background-color: var(--success-dark);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-2xl);
         }
 
         .hero-btn-recruiter {
-            background-color: #3498db;
-            color: white;
+            background-color: white;
+            color: var(--primary);
+            font-weight: 700;
         }
 
         .hero-btn-recruiter:hover {
-            background-color: #2980b9;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+            background-color: var(--bg-primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-2xl);
         }
 
-        /* Features Section */
+        /* ========== FEATURES SECTION ==========*/
         .features-section {
-            background-color: #f8f9fa;
-            padding: 80px 20px;
+            background-color: var(--bg-primary);
+            padding: clamp(3rem, 8vw, 5rem) var(--space-xl);
         }
 
         .features-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-size: 36px;
-            color: #2c3e50;
-            margin-bottom: 60px;
-            font-weight: bold;
+            font-size: clamp(28px, 5vw, 40px);
+            color: var(--text-primary);
+            margin-bottom: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: clamp(14px, 2vw, 16px);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-2xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-xl);
         }
 
         .feature-card {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            background: var(--bg-card);
+            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--border);
+            transition: all var(--transition-normal);
             text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--success));
+            transition: left var(--transition-slow);
+            z-index: 1;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
+        }
+
+        .feature-card > * {
+            position: relative;
+            z-index: 2;
         }
 
         .feature-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: #667eea;
+            font-size: clamp(36px, 6vw, 48px);
+            margin-bottom: var(--space-lg);
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
         }
 
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .feature-card:nth-child(1) .feature-icon { animation-delay: 0s; }
+        .feature-card:nth-child(2) .feature-icon { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) .feature-icon { animation-delay: 0.4s; }
+        .feature-card:nth-child(4) .feature-icon { animation-delay: 0.6s; }
+        .feature-card:nth-child(5) .feature-icon { animation-delay: 0.8s; }
+        .feature-card:nth-child(6) .feature-icon { animation-delay: 1s; }
+
         .feature-card h3 {
-            font-size: 22px;
-            color: #2c3e50;
-            margin-bottom: 15px;
+            font-size: clamp(18px, 3vw, 22px);
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            font-weight: 700;
         }
 
         .feature-card p {
-            color: #7f8c8d;
-            font-size: 14px;
-            line-height: 1.6;
+            color: var(--text-secondary);
+            font-size: clamp(12px, 2vw, 14px);
+            line-height: 1.7;
         }
 
-        /* Login Options Section */
-        .login-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 80px 20px;
-            color: white;
-        }
-
-        .login-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .login-title {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 60px;
-            font-weight: bold;
-        }
-
-        .login-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .login-card {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .login-card:hover {
-            background-color: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-5px);
-        }
-
-        .login-card-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-        }
-
-        .login-card h2 {
-            font-size: 28px;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-
-        .login-card p {
-            font-size: 14px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        .login-card-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .login-card-btn {
-            padding: 12px 30px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 6px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-        }
-
-        .candidate-login-btn {
-            background-color: #27ae60;
-            color: white;
-        }
-
-        .candidate-login-btn:hover {
-            background-color: #229954;
-            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
-        }
-
-        .candidate-register-btn {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .candidate-register-btn:hover {
-            background-color: white;
-            color: #27ae60;
-        }
-
-        .recruiter-login-btn {
-            background-color: #3498db;
-            color: white;
-        }
-
-        .recruiter-login-btn:hover {
-            background-color: #2980b9;
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-        }
-
-        .recruiter-register-btn {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .recruiter-register-btn:hover {
-            background-color: white;
-            color: #3498db;
-        }
-
-        /* About Section */
+        /* ========== ABOUT SECTION ==========*/
         .about-section {
-            background-color: white;
-            padding: 80px 20px;
+            background: var(--bg-secondary);
+            padding: clamp(3rem, 8vw, 5rem) var(--space-xl);
         }
 
         .about-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: clamp(2rem, 5vw, 4rem);
             align-items: center;
         }
 
         .about-content h2 {
-            font-size: 32px;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-weight: bold;
+            font-size: clamp(28px, 4vw, 36px);
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .about-content p {
-            color: #7f8c8d;
-            font-size: 14px;
-            line-height: 1.8;
-            margin-bottom: 15px;
+            color: var(--text-secondary);
+            font-size: clamp(13px, 2vw, 15px);
+            line-height: 1.9;
+            margin-bottom: var(--space-lg);
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-lg);
+            margin-top: var(--space-2xl);
+        }
+
+        .highlight-item {
+            display: flex;
+            gap: var(--space-md);
+            align-items: flex-start;
+        }
+
+        .highlight-icon {
+            font-size: 24px;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+
+        .highlight-item h4 {
+            font-size: clamp(13px, 2vw, 15px);
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+        }
+
+        .highlight-item p {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin: 0;
         }
 
         .about-image {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 300px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            height: clamp(250px, 40vw, 400px);
+            border-radius: var(--radius-2xl);
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 48px;
+            font-size: clamp(64px, 10vw, 96px);
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Stats Section */
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* ========== STATS SECTION ==========*/
         .stats-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: clamp(3rem, 8vw, 5rem) var(--space-xl);
             color: white;
         }
 
         .stats-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: clamp(2rem, 4vw, 3rem);
             text-align: center;
+        }
+
+        .stat-item {
+            position: relative;
+            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-normal);
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-4px);
         }
 
         .stat-item h3 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            font-weight: bold;
+            font-size: clamp(32px, 6vw, 48px);
+            margin-bottom: var(--space-md);
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
         .stat-item p {
-            font-size: 14px;
-            opacity: 0.9;
+            font-size: clamp(13px, 2vw, 16px);
+            opacity: 0.95;
+            font-weight: 500;
         }
 
-        /* Footer */
+        /* ========== FOOTER ==========*/
         .footer {
-            background-color: #2c3e50;
+            background-color: var(--secondary);
             color: white;
-            padding: 40px 20px;
-            text-align: center;
+            padding: clamp(2rem, 4vw, 3rem) var(--space-xl);
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-2xl);
+            margin-bottom: var(--space-2xl);
+        }
+
+        .footer-section h3 {
+            font-size: clamp(14px, 2vw, 16px);
+            margin-bottom: var(--space-lg);
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+
+        .footer-section a,
+        .footer-section p {
+            font-size: clamp(12px, 2vw, 14px);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: var(--space-md);
+            transition: color var(--transition-normal);
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-light);
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
+            gap: clamp(1rem, 3vw, 2rem);
             flex-wrap: wrap;
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-xl);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #667eea;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: clamp(12px, 2vw, 14px);
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            font-size: 14px;
+            text-align: center;
+            font-size: clamp(11px, 2vw, 13px);
+            opacity: 0.8;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-section h1 {
-                font-size: 32px;
-            }
+        /* ========== SCROLL TO TOP BUTTON ==========*/
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-normal);
+            z-index: 999;
+        }
 
-            .hero-section p {
-                font-size: 16px;
-            }
+        .scroll-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
-            .hero-buttons {
-                flex-direction: column;
-                gap: 15px;
-            }
+        .scroll-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-2xl);
+        }
 
-            .hero-btn {
-                width: 100%;
-                padding: 12px 20px;
-                font-size: 16px;
-            }
+        /* ========== UTILITIES ==========*/
+        .hidden {
+            display: none !important;
+        }
 
-            .section-title {
-                font-size: 24px;
-            }
+        .visible {
+            display: block;
+        }
 
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .login-options {
-                grid-template-columns: 1fr;
-                gap: 20px;
+        /* ========== RESPONSIVE DESIGN ==========*/
+        @media (max-width: 1024px) {
+            .navbar-container {
+                padding: var(--space-lg) var(--space-lg);
             }
 
             .about-container {
                 grid-template-columns: 1fr;
             }
 
-            .stats-container {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --space-lg: 1.2rem;
+                --space-xl: 1.5rem;
+                --space-2xl: 2rem;
+            }
+
+            .navbar-container {
+                padding: var(--space-md);
+                gap: var(--space-md);
+            }
+
+            .navbar-brand {
+                font-size: 18px;
+            }
+
+            .nav-links {
+                gap: var(--space-md);
+                font-size: 13px;
+            }
+
+            .nav-links a {
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .hero-section {
+                padding: var(--space-2xl) var(--space-lg);
+                min-height: 500px;
+            }
+
+            .hero-section h1 {
+                margin-bottom: var(--space-lg);
+            }
+
+            .hero-section p {
+                margin-bottom: var(--space-xl);
+            }
+
+            .hero-buttons {
+                gap: var(--space-lg);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+
+            .feature-card {
+                padding: var(--space-lg);
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+
+            .about-highlights {
                 grid-template-columns: 1fr;
             }
 
-            .home-navbar .nav-links {
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+
+            .footer-links {
                 flex-direction: column;
-                gap: 10px;
+                gap: var(--space-md);
+            }
+
+            .scroll-to-top {
+                width: 44px;
+                height: 44px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --space-md: 0.75rem;
+                --space-lg: 1rem;
+                --space-xl: 1.2rem;
+                --space-2xl: 1.5rem;
+            }
+
+            .navbar-container {
+                padding: var(--space-sm);
+                flex-wrap: wrap;
+                gap: var(--space-sm);
+            }
+
+            .navbar-brand {
+                font-size: 16px;
+            }
+
+            .nav-links {
+                gap: 6px;
+                font-size: 11px;
+            }
+
+            .nav-links a {
+                padding: 6px 10px;
+            }
+
+            .hero-section {
+                padding: var(--space-xl) var(--space-md);
+                min-height: 450px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: var(--space-md);
+                width: 100%;
+            }
+
+            .hero-btn {
+                width: 100%;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+
+            .feature-card {
+                padding: var(--space-md);
+            }
+
+            .feature-card h3 {
+                font-size: 14px;
+            }
+
+            .feature-card p {
+                font-size: 12px;
+            }
+
+            .about-container {
+                gap: var(--space-lg);
+            }
+
+            .about-content h2 {
+                font-size: 22px;
+            }
+
+            .about-content p {
+                font-size: 13px;
+            }
+
+            .about-highlights {
+                gap: var(--space-md);
+            }
+
+            .highlight-item h4 {
+                font-size: 13px;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+
+            .stat-item {
+                padding: var(--space-lg);
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: var(--space-sm);
+            }
+
+            .footer-section h3 {
+                font-size: 13px;
+            }
+
+            .scroll-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 18px;
+            }
+        }
+
+        /* ========== ACCESSIBILITY ==========*/
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* ========== PRINT STYLES ==========*/
+        @media print {
+            .home-navbar,
+            .hero-buttons,
+            .scroll-to-top {
+                display: none;
+            }
+
+            body {
+                background: white;
             }
         }
     </style>
@@ -451,10 +914,9 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#login">Get Started</a></li>
-                <li><a href="/recruiter/login">Sign in</a></li>
-                <li><a href="/recruiter/register">Sign up</a></li>
-
+                <li><a href="#stats">Stats</a></li>
+                <li><a href="/candidate/login">Sign In</a></li>
+                <li><a href="/recruiter/register">Sign Up</a></li>
             </ul>
         </div>
     </nav>
@@ -462,10 +924,10 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <h1>Find Your Dream Job or Hire Top Talent</h1>
-        <p>Connect with opportunities and build your future. Whether you're seeking a job or looking for the right candidate, we're here to help.</p>
+        <p>Connect with opportunities and build your future. Whether you're seeking a job or looking for the right candidate, we're here to help you succeed.</p>
         <div class="hero-buttons">
-            <a href="#login" class="hero-btn hero-btn-candidate">👨‍💼 I'm Looking for a Job</a>
-            <a href="#login" class="hero-btn hero-btn-recruiter">👔 I'm Hiring</a>
+            <a href="/candidate/login" class="hero-btn hero-btn-candidate">👨‍💼 I'm Looking for a Job</a>
+            <a href="/recruiter/login" class="hero-btn hero-btn-recruiter">👔 I'm Hiring</a>
         </div>
     </section>
 
@@ -473,41 +935,42 @@
     <section class="features-section" id="features">
         <div class="features-container">
             <h2 class="section-title">Why Choose Our Job Portal?</h2>
+            <p class="section-subtitle">Experience the best-in-class job portal with innovative features designed to connect talent with opportunity.</p>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🔍</div>
-                    <h3>Easy Job Search</h3>
-                    <p>Browse thousands of job listings and find positions that match your skills and experience.</p>
+                    <h3>Smart Job Search</h3>
+                    <p>Browse thousands of job listings with advanced filters and find positions that perfectly match your skills, experience, and career goals.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">📝</div>
-                    <h3>Simple Application</h3>
-                    <p>Apply to jobs in seconds with your profile. Track all your applications in one place.</p>
+                    <div class="feature-icon">⚡</div>
+                    <h3>One-Click Apply</h3>
+                    <p>Apply to jobs in seconds with your pre-filled profile. Track all your applications in one beautiful dashboard.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">💼</div>
-                    <h3>Post Opportunities</h3>
-                    <p>Post job listings quickly and reach qualified candidates instantly.</p>
+                    <div class="feature-icon">📋</div>
+                    <h3>Easy Job Posting</h3>
+                    <p>Post job listings quickly with our intuitive form. Reach thousands of qualified candidates instantly and efficiently.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">👥</div>
                     <h3>Talent Management</h3>
-                    <p>Review applications, manage candidates, and make informed hiring decisions.</p>
+                    <p>Review applications, manage candidates with ease, and make informed hiring decisions with comprehensive applicant profiles.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">🔐</div>
-                    <h3>Secure & Reliable</h3>
-                    <p>Your data is protected with industry-standard security measures.</p>
+                    <h3>Secure & Trustworthy</h3>
+                    <p>Your data is protected with enterprise-grade security measures and encryption. Complete privacy and transparency.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Fast & Efficient</h3>
-                    <p>Get connected with the right people quickly and efficiently.</p>
+                    <div class="feature-icon">🎯</div>
+                    <h3>Perfect Matches</h3>
+                    <p>Our advanced matching algorithm connects the right candidates with the right opportunities, saving time for everyone.</p>
                 </div>
             </div>
         </div>
@@ -518,18 +981,48 @@
         <div class="about-container">
             <div class="about-content">
                 <h2>About Our Platform</h2>
-                <p>Job Portal is a comprehensive online employment platform designed to connect job seekers with employers. We believe in creating opportunities for everyone.</p>
-                <p>Our mission is to simplify the hiring and job search process by providing a user-friendly platform where candidates can showcase their talents and employers can find the perfect fit.</p>
-                <p>With our advanced matching algorithms and intuitive interface, we help bridge the gap between talent and opportunity.</p>
+                <p>Job Portal is a comprehensive online employment platform designed to revolutionize the way job seekers and employers connect. We believe in creating meaningful opportunities for everyone.</p>
+                <p>Our mission is to simplify the hiring and job search process by providing an intuitive, user-friendly platform where candidates can showcase their talents and employers can find the perfect fit for their teams.</p>
+                
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">✨</div>
+                        <div>
+                            <h4>User-Friendly</h4>
+                            <p>Intuitive interface for everyone</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">🚀</div>
+                        <div>
+                            <h4>Fast & Efficient</h4>
+                            <p>Get matched in minutes</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">🔗</div>
+                        <div>
+                            <h4>Smart Matching</h4>
+                            <p>Advanced algorithms</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">📊</div>
+                        <div>
+                            <h4>Data Driven</h4>
+                            <p>Insights that matter</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="about-image">
-                <span>💡</span>
+                <span>💼</span>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="stats-section">
+    <section class="stats-section" id="stats">
         <div class="stats-container">
             <div class="stat-item">
                 <h3>10K+</h3>
@@ -550,44 +1043,104 @@
         </div>
     </section>
 
-    <!-- Login Options Section -->
-    <section class="login-section" id="login">
-        <div class="login-container">
-            <h2 class="login-title">Get Started Today</h2>
-            <div class="login-options">
-                <!-- Candidate Login Card -->
-                <div class="login-card">
-                    <div class="login-card-icon">👨‍💻</div>
-                    <h2>For Job Seekers</h2>
-                    <p>Find your perfect job. Explore thousands of opportunities from top companies and take your career to the next level.</p>
-                   
-                </div>
-
-                <!-- Recruiter Login Card -->
-                <div class="login-card">
-                    <div class="login-card-icon">💼</div>
-                    <h2>For Recruiters</h2>
-                    <p>Post job openings and connect with talented professionals. Build your dream team and grow your company faster.</p>
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>Job Portal connects talented professionals with great opportunities worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#about">About Us</a>
+                    <a href="#features">Features</a>
+                    <a href="#stats">Statistics</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#">Help Center</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">FAQ</a>
+                </div>
+            </div>
+            
             <div class="footer-links">
-                <a href="#about">About</a>
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms & Conditions</a>
                 <a href="#">Contact</a>
                 <a href="#">Blog</a>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2026 Job Portal System. All rights reserved. | Built with ❤️ for Developers</p>
+                <p>&copy; 2026 Job Portal System. All rights reserved. | Built with ❤️ for Connecting Talent & Opportunity</p>
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">⬆️</button>
+
+    <script>
+        // Scroll to Top Functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('active');
+            } else {
+                scrollToTopBtn.classList.remove('active');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
