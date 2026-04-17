@@ -47,6 +47,9 @@ app.get("/savedJobs",savedJobs);
 app.get("/candidate/login",(req,resp)=>{
     resp.render('candidateLogin.ejs')
 })
+app.get("/report",(req,resp)=>{
+  resp.render("report")
+})
 //Applyed job ko delete karne ke liye
 app.get("/deleteAppled/:id",deleteApply)
 //saved jobs ko delete karne ke liye
