@@ -5,36 +5,36 @@
 
 /* ========== CSS CUSTOM PROPERTIES ==========*/
 :root {
-    /* Color Palette - Extended */
-    --primary: #1e3a8a;
-    --primary-dark: #1e40af;
-    --primary-light: #3b82f6;
-    --secondary: #f59e0b;
-    --secondary-dark: #d97706;
-    --secondary-light: #fbbf24;
-    --accent: #10b981;
-    --accent-dark: #059669;
-    --accent-light: #6ee7b7;
+    /* Color Palette - Vibrant Purple-Violet + Cyan */
+    --primary: #7c3aed;
+    --primary-dark: #5b21b6;
+    --primary-light: #a78bfa;
+    --secondary: #06b6d4;
+    --secondary-dark: #0891b2;
+    --secondary-light: #67e8f9;
+    --accent: #f43f5e;
+    --accent-dark: #e11d48;
+    --accent-light: #fda4af;
     --danger: #ef4444;
     --danger-dark: #dc2626;
     --danger-light: #fca5a5;
     --warning: #f59e0b;
     --success: #10b981;
-    --info: #3b82f6;
+    --info: #06b6d4;
     
     /* Neutrals - Extended */
-    --bg-primary: #f8fafc;
+    --bg-primary: #faf5ff;
     --bg-secondary: #ffffff;
     --bg-card: #ffffff;
-    --bg-hover: #f1f5f9;
-    --bg-overlay: rgba(15, 23, 42, 0.5);
-    --text-primary: #0f172a;
+    --bg-hover: #f3e8ff;
+    --bg-overlay: rgba(30, 10, 60, 0.5);
+    --text-primary: #1e1040;
     --text-secondary: #64748b;
     --text-muted: #94a3b8;
     --text-light: #cbd5e1;
-    --border: #e2e8f0;
-    --border-light: #f1f5f9;
-    --border-dark: #cbd5e1;
+    --border: #e9d5ff;
+    --border-light: #f3e8ff;
+    --border-dark: #c4b5fd;
     
     /* Shadows - Professional */
     --shadow-xs: 0 1px 1px 0 rgb(0 0 0 / 0.03);
@@ -110,18 +110,18 @@
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg-primary: #0f172a;
-        --bg-secondary: #1e293b;
-        --bg-card: #1e293b;
-        --bg-hover: #334155;
-        --bg-overlay: rgba(255, 255, 255, 0.1);
-        --text-primary: #f1f5f9;
-        --text-secondary: #cbd5e1;
-        --text-muted: #94a3b8;
-        --text-light: #64748b;
-        --border: #334155;
-        --border-light: #475569;
-        --border-dark: #1e293b;
+        --bg-primary: #0d0a1a;
+        --bg-secondary: #1a1030;
+        --bg-card: #1a1030;
+        --bg-hover: #2d1b5e;
+        --bg-overlay: rgba(167, 139, 250, 0.1);
+        --text-primary: #f5f0ff;
+        --text-secondary: #c4b5fd;
+        --text-muted: #a78bfa;
+        --text-light: #7c3aed;
+        --border: #2d1b5e;
+        --border-light: #3b2068;
+        --border-dark: #1a1030;
     }
 }
 
@@ -143,7 +143,7 @@ html {
 
 body {
     font-family: var(--font-family);
-    background: linear-gradient(135deg, var(--bg-primary) 0%, #e2e8f0 100%);
+    background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 50%, #e0f2fe 100%);
     color: var(--text-primary);
     line-height: var(--line-height-normal);
     min-height: 100vh;
@@ -155,7 +155,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
     body {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        background: linear-gradient(135deg, #0d0a1a 0%, #1a1030 50%, #0a1628 100%);
     }
 }
 
@@ -219,20 +219,20 @@ main, .container, .form-container, .table-container {
 
 /* ========== NAVBAR ==========*/
 .navbar {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-light);
     padding: var(--space-lg) 0;
     position: sticky;
     top: 0;
     z-index: var(--z-sticky);
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 24px rgba(124, 58, 237, 0.08);
     transition: all var(--transition-normal);
 }
 
 @media (prefers-color-scheme: dark) {
     .navbar {
-        background: rgba(30, 41, 59, 0.95);
+        background: rgba(26, 16, 48, 0.95);
     }
 }
 
@@ -249,7 +249,7 @@ main, .container, .form-container, .table-container {
 .navbar-brand {
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-extrabold);
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -285,13 +285,13 @@ main, .container, .form-container, .table-container {
     left: 50%;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
     transition: all var(--transition-normal);
     transform: translateX(-50%);
 }
 
 .nav-links a:hover {
-    background: rgba(30, 58, 138, 0.1);
+    background: rgba(124, 58, 237, 0.1);
     color: var(--primary);
 }
 
@@ -304,10 +304,10 @@ main, .container, .form-container, .table-container {
     text-align: center;
     margin: var(--space-2xl) auto;
     padding: var(--space-2xl);
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, #a855f7 50%, var(--secondary) 100%);
     color: white;
     border-radius: var(--radius-2xl);
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 20px 60px rgba(124, 58, 237, 0.35);
     position: relative;
     overflow: hidden;
     animation: fadeIn 0.6s ease-out;
@@ -411,7 +411,7 @@ label {
     font-size: var(--font-size-sm);
     letter-spacing: 0.025em;
     text-transform: uppercase;
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -459,7 +459,7 @@ textarea:focus,
 select:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgb(30 58 138 / 0.1);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
     transform: translateY(-2px);
 }
 
@@ -529,9 +529,10 @@ button[type="reset"]:hover::before {
 button[type="submit"],
 button[type="button"],
 button[type="reset"] {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: linear-gradient(135deg, var(--primary), #a855f7, var(--secondary));
+    background-size: 200% auto;
     color: white;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.4);
     position: relative;
     z-index: 0;
 }
@@ -541,8 +542,8 @@ button[type="submit"]:hover,
 button[type="button"]:hover,
 button[type="reset"]:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-2xl);
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    box-shadow: 0 16px 48px rgba(124, 58, 237, 0.5);
+    background-position: right center;
 }
 
 .btn-primary:active,
@@ -677,7 +678,7 @@ table {
 }
 
 th {
-    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background: linear-gradient(135deg, var(--primary), #a855f7, var(--secondary));
     color: white;
     padding: var(--space-lg);
     text-align: left;
@@ -756,7 +757,7 @@ tbody tr:last-child td {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--secondary) 100%);
+    background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 35%, #a855f7 65%, #06b6d4 100%);
     color: white;
     position: relative;
     overflow: hidden;
@@ -827,8 +828,8 @@ tbody tr:last-child td {
 
 /* ========== FOOTER ==========*/
 .footer {
-    background: var(--text-primary);
-    color: rgb(71, 69, 69);
+    background: linear-gradient(135deg, #1e1040 0%, #0d0a1a 100%);
+    color: rgba(255,255,255,0.85);
     padding: var(--space-2xl) var(--space-xl);
     margin-top: auto;
 }
@@ -848,7 +849,7 @@ tbody tr:last-child td {
 }
 
 .footer-links a {
-    color: rgba(94, 90, 90, 0.8);
+    color: rgba(196, 181, 253, 0.85);
     text-decoration: none;
     font-weight: var(--font-weight-medium);
     transition: all var(--transition-normal);
@@ -862,12 +863,12 @@ tbody tr:last-child td {
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--secondary);
+    background: linear-gradient(90deg, var(--primary-light), var(--secondary));
     transition: width var(--transition-normal);
 }
 
 .footer-links a:hover {
-    color: var(--secondary);
+    color: var(--secondary-light);
 }
 
 .footer-links a:hover::after {
