@@ -23,6 +23,7 @@ export const recruiterLogin=async(req,resp)=>{
             text:`Welcome Back ${name}`
          })
         }catch(error){
+            console.log(error)
         return resp.redirect("/recruiter/login?error=Email Is Not Valid"); 
 
         }
