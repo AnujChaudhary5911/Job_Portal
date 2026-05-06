@@ -16,7 +16,7 @@ export const recruiterLogin=async(req,resp)=>{
         req.session.Rid=user._id;
         req.session.email=email;
         try{
-         await Transport.sendMail({
+          Transport.sendMail({
             from:'Anuj Chaudhary',
             to:email,
             subject:'welcome',
@@ -48,7 +48,7 @@ export const recruiterRegister=async(req,resp)=>{
         }
         if(!user){
             try{
-                await Transport.sendMail({
+                 Transport.sendMail({
                     from:'Anuj Chaudhary',
                     to:email,
                     subject:'Welcome',
@@ -92,7 +92,7 @@ export const c_register=async(req,resp)=>{
            name,email,password:hashed
         }
          try{
-                await Transport.sendMail({
+                 Transport.sendMail({
                     from:'Anuj Chaudhary',
                     to:email,
                     subject:'Welcome',
@@ -141,7 +141,7 @@ export const candidateLogin = async (req, res) => {
         req.session.userId=email;
         req.session.candidateId=user._id;
          try{
-         await Transport.sendMail({
+          Transport.sendMail({
             from:'Anuj Chaudhary',
             to:email,
             subject:'welcome',
