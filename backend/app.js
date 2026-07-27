@@ -8,6 +8,7 @@ import helmet from "helmet";
 import mongoose from "mongoose";
 import session from "express-session";
 import connectDB from "./config/db.js";
+app.set('trust proxy', 1);
 app.use(session({
     secret: process.env.SESSION_SECRET || 'my_super_secret_development_key',
     resave: false,
