@@ -9,22 +9,30 @@ import mongoose from "mongoose";
 import session from "express-session";
 import connectDB from "./config/db.js";
 app.use(session({
-  secret: 'my_super_secret_development_key',
-  resave: false,
-  saveUninitialized: false,
-   cookie: {
-    maxAge: 30 * 60 * 1000
-  }
+    secret: process.env.SESSION_SECRET || 'my_super_secret_development_key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 30 * 60 * 1000,
+        secure: process.env.NODE_ENV === 'production' // Production HTTPS safety
+    }
 }));
 //helmet security lagane ke liye middleware
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: false, // EJS templates aur alert scripts smooth chalne ke liye
+  }));
 import path from 'path'
 import { getJobs, postJob ,cDashboard,Rdashboard,view,apply,saveJob,aplyed,savedJobs,updateJob,profile,CandidateUpdate,filter,viewPosted,Applicants,deleteApply,deleteSaved,deletePostedJob,EditPostedJob,Accept,Reject,viewCandidate} from './controllers/jobController.js';
 import {candidateLogin,c_register,recruiterRegister,recruiterLogin} from './src/auth.js';
-const ab=path.resolve('../frontend/public')
-app.use(express.static(ab))
-app.set('views', path.resolve('../frontend/views'))
-app.set('view engine','ejs')
+// const ab=path.resolve('../frontend/public')
+// app.use(express.static(ab))
+// app.set('views', path.resolve('../frontend/views'))
+// app.set('view engine','ejs')
+const publicPath = path.resolve('../frontend/public');
+const viewsPath = path.resolve('../frontend/views');
+app.use(express.static(publicPath));
+app.set('views', viewsPath);
+app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 connectDB();
