@@ -1,7 +1,9 @@
-import express from 'express'
-const app=express();
 import dotenv from 'dotenv';
 dotenv.config();
+import express from 'express'
+const app=express();
+
+import MongoStore from 'connect-mongo';
 import cors from'cors';
 app.use(cors()); 
 import helmet from "helmet";
@@ -13,11 +15,15 @@ app.use(session({
     secret: process.env.SESSION_SECRET || 'my_super_secret_development_key',
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI // aapka MongoDB connection string
+  }),
     cookie: {
         maxAge: 30 * 60 * 1000,
         secure: process.env.NODE_ENV === 'production' // Production HTTPS safety
     }
 }));
+
 //helmet security lagane ke liye middleware
 app.use(helmet({
     contentSecurityPolicy: false, // EJS templates aur alert scripts smooth chalne ke liye
